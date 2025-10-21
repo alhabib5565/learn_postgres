@@ -1,28 +1,36 @@
--- Active: 1727920009057@@127.0.0.1@5432@ph@public
-SELECT * FROM students
- WHERE dob > CURRENT_DATE;
+-- Active: 1760457924579@@127.0.0.1@5432@ph
 
 SELECT to_char(TIME '2001-09-23 18:23', 'hh');
+
 SELECT TIMESTAMP WITH TIME ZONE '2001-09-23';
+
 SELECT CURRENT_DATE;
+
 SELECT CURRENT_TIME;
+
 SELECT CURRENT_TIMESTAMP;
-SELECT age(now(),'2005-04-11');
+
+SELECT age (now(), '2005-04-11');
 
 SELECT DATE '2005-4-11' + INTERVAL '9 d 3 months 5 y';
 
-SELECT * FROM students
-    WHERE EXTRACT(YEAR FROM dob) = 2003;
+SELECT * FROM students WHERE EXTRACT( YEAR FROM dob ) = 2003;
 
-SELECT name, EXTRACT(DOW FROM dob) as days_of_week FROM students;
-SELECT name, EXTRACT(MONTH FROM dob) as days_of_month FROM students;
-CREATE TABLE employee_dob (
-    dob TIMESTAMP WITH TIME ZONE
-);
+SELECT name, EXTRACT( DOW FROM dob ) as days_of_week FROM students;
 
-INSERT INTO employee_dob VALUES('2025-01-10')
+SELECT name, EXTRACT(
+        MONTH
+        FROM dob
+    ) as days_of_month
+FROM students;
 
-SELECT * FROM employee_dob
-WHERE dob BETWEEN CURRENT_DATE and CURRENT_DATE + INTERVAL '7 d';
+CREATE TABLE employee_dob (dob TIMESTAMP WITH TIME ZONE);
+
+INSERT INTO employee_dob VALUES ('2025-01-10')
+
+SELECT *
+FROM employee_dob
+WHERE
+    dob BETWEEN CURRENT_DATE and CURRENT_DATE  + INTERVAL '7 d';
 
 SELECT CURRENT_DATE + INTERVAL '100 d'
